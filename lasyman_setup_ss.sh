@@ -42,6 +42,9 @@ function check_OS_distributor(){
 	if [[ "${CHECK_OS_VERSION}" == "UBUNTU" ]] ;then
 		echo -e "\tCurrent OS: ${CHECK_OS_VERSION}"
 		UBUNTU=1
+	elif [[ "${CHECK_OS_VERSION}" == "DEBIAN" ]] ;then
+		echo -e "\tCurrent OS: ${CHECK_OS_VERSION}"
+		UBUNTU=1
 	elif [[ "${CHECK_OS_VERSION}" == "CENTOS" ]] ;then
 		echo -e "\tCurrent OS: ${CHECK_OS_VERSION}!!!"
 		CENTOS=1
