@@ -151,6 +151,23 @@ function install_soft_for_each(){
 		pip install cymysql shadowsocks
 		echo "=======ready to reset mysql root password========"
 		reset_mysql_root_pwd
+	elif [[ ${DEBIAN} -eq 1 ]];then
+		echo "Will install below software on your DEBIAN system:"
+		update_system
+		for file in ${UBUNTU_TOOLS_LIBS}
+		do
+			trap 'echo -e "\ninterrupted by user, exit";exit' INT
+			echo "========================="
+			echo "installing $file ..."
+			echo "-------------------------"
+			apt-get install $file -y
+			sleep 1
+			echo "$file installed ."
+		done
+		pip install cymysql shadowsocks
+		echo "=======ready to reset mysql root password========"
+		reset_mysql_root_pwd
+	
 	elif [[ ${CENTOS} -eq 1 ]];then
 		echo "Will install softwears on your CentOs system:"
 		update_system
@@ -172,7 +189,7 @@ function install_soft_for_each(){
 			reset_mysql_root_pwd
 		fi
 	else
-		echo "Other OS not support yet, please try Ubuntu or CentOs"
+		echo "Other OS not support yet, please try Ubuntu or CentOs or Debian"
 		exit 1
 	fi
 }
